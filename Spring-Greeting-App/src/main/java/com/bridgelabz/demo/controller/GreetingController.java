@@ -1,8 +1,12 @@
 package com.bridgelabz.demo.controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.bridgelabz.demo.model.GreetingMessage;
+import com.bridgelabz.demo.repository.GreetingRepository;
 import com.bridgelabz.demo.service.GreetingService;
 
 @RestController
@@ -28,14 +32,16 @@ public class GreetingController {
     public String deleteGreeting() {
         return "{\"message\": \"Hello, DELETE request received!\"}";
     }
-    private final GreetingService greetingService;
-
-    public GreetingController(GreetingService greetingService) {
-        this.greetingService = greetingService;
-        
-//        curl -X GET http://localhost:8080/greeting
-
-    }
+    
+    @Autowired
+    private GreetingService greetingService;
+//
+//    public GreetingController(GreetingService greetingService) {
+//        this.greetingService = greetingService;
+//        
+////        curl -X GET http://localhost:8080/greeting
+//
+//    }
   //use case2
     @GetMapping("/greetingg")
     public String getGreetingMesssage() {
@@ -78,5 +84,32 @@ public class GreetingController {
       //
       //	
     }
+    
+    
+    //USECASE 5
+    @Autowired
+    private GreetingRepository greetingRepository;
+
+
+    // Fetch Greeting by ID
+    @GetMapping("/{id}")
+    public Optional<GreetingMessage> getGreetingById(@PathVariable Long id) {
+        return greetingRepository.findById(id);
+        
+        
+    }
+    
+    @PostMapping("/add")
+    public GreetingMessage addGreeting(@RequestParam String message) {
+        GreetingMessage greeting = new GreetingMessage(message);
+        return greetingRepository.save(greeting);
+    }
+    
+  //lets add somme data
+  //curl -X POST "http://localhost:8080/greetings/add?message=HelloSpringBoot"
+  //
+  //now fetch it by ID:
+  //
+  //curl -X GET "http://localhost:8080/greetings/1"
     
 }
