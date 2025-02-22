@@ -36,6 +36,17 @@ public class GreetingController {
     @GetMapping("/greetingg")
     public String getGreetingMesssage() {
         return greetingService.getGreetingMesssage();
+        
+//        http://localhost:8080/greeting/greetingg
+    }
+    
+
+    @GetMapping("/param")
+    public String getGreeting(
+        @RequestParam(required = false) String firstName,
+        @RequestParam(required = false) String lastName) {
+        
+        return greetingService.getGreeting(firstName, lastName);
     }
     
     
