@@ -2,6 +2,8 @@ package com.bridgelabz.demo.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.bridgelabz.demo.service.GreetingService;
+
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
@@ -25,4 +27,16 @@ public class GreetingController {
     public String deleteGreeting() {
         return "{\"message\": \"Hello, DELETE request received!\"}";
     }
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    @GetMapping("/greetingg")
+    public String getGreetingMesssage() {
+        return greetingService.getGreetingMesssage();
+    }
+    
+    
 }
