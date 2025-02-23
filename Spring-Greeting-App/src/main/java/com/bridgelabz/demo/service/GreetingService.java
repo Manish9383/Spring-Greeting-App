@@ -1,6 +1,8 @@
 package com.bridgelabz.demo.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,4 +52,10 @@ public class GreetingService {
         GreetingMessage greetingMessage = new GreetingMessage(message);
         return greetingRepository.save(greetingMessage);
     }
+  //UC6 - Import List
+    public List<GreetingMessage> getAllGreetings() { // UC6 - Service method to fetch all greetings
+        return greetingRepository.findAll();
+    }
+    
+    
 }

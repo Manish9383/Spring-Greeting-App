@@ -1,5 +1,6 @@
 package com.bridgelabz.demo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,14 +76,14 @@ public class GreetingController {
 //      	POST http://localhost:8080/greeting?firstName=Manish&lastName=Singh
 //      		
 //      		 to View Data in H2 Console
-      //
+      
 //      	    open the url in web---  http://localhost:8080/h2-console
 //      	    Enter JDBC URL: jdbc:h2:mem:greetingdb
 //      	    Run the SQL query:
-      //
+      
 //      	SELECT * FROM greetings;
-      //
-      //	
+      
+      	
     }
     
     
@@ -103,13 +104,21 @@ public class GreetingController {
     public GreetingMessage addGreeting(@RequestParam String message) {
         GreetingMessage greeting = new GreetingMessage(message);
         return greetingRepository.save(greeting);
+        //lets add somme data
+        //curl -X POST "http://localhost:8080/greeting/add?message=HelloSpringBoot"
+        //
+        //now fetch it by ID:
+        //
+        //curl -X GET "http://localhost:8080/greeting/1"
+          
+        
     }
     
-  //lets add somme data
-  //curl -X POST "http://localhost:8080/greetings/add?message=HelloSpringBoot"
-  //
-  //now fetch it by ID:
-  //
-  //curl -X GET "http://localhost:8080/greetings/1"
+  //UC6 - Import List
+    @GetMapping("/all") // UC6 - Fetch all greetings
+    public List<GreetingMessage> getAllGreetings() {
+        return greetingRepository.findAll();
+    }
+    
     
 }
