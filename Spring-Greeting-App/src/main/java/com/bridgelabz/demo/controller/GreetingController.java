@@ -120,5 +120,21 @@ public class GreetingController {
         return greetingRepository.findAll();
     }
     
+ // UC7: Edit a greeting message
+    
+    @PutMapping("/update/{id}") 
+    public GreetingMessage updateGreeting(@PathVariable Long id, @RequestParam String message) { 
+        Optional<GreetingMessage> existingGreeting = greetingRepository.findById(id); 
+        if (existingGreeting.isPresent()) { 
+            GreetingMessage greeting = existingGreeting.get(); 
+            greeting.setMessage(message); 
+            return greetingRepository.save(greeting); 
+        } else { 
+            throw new RuntimeException("Greeting not found with id: " + id); 
+        } 
+    }
+    
+    
+    
     
 }
