@@ -134,6 +134,17 @@ public class GreetingController {
         } 
     }
     
+    // UC8: Delete a greeting message 
+    @DeleteMapping("/delete/{id}") 
+    public String deleteGreeting(@PathVariable Long id) { 
+        if (greetingRepository.existsById(id)) { 
+            greetingRepository.deleteById(id); 
+            return "Greeting deleted successfully";
+        } else { 
+            throw new RuntimeException("Greeting not found with id: " + id);
+        } 
+    } 
+    
     
     
     
