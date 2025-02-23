@@ -11,6 +11,7 @@ import com.bridgelabz.demo.repository.GreetingRepository;
 import com.bridgelabz.demo.service.GreetingService;
 
 @RestController
+//UC1
 @RequestMapping("/greeting")
 public class GreetingController {
    //Use Case1
@@ -36,19 +37,13 @@ public class GreetingController {
     
     @Autowired
     private GreetingService greetingService;
-//
-//    public GreetingController(GreetingService greetingService) {
-//        this.greetingService = greetingService;
-//        
-////        curl -X GET http://localhost:8080/greeting
-//
-//    }
+
   //use case2
     @GetMapping("/greetingg")
     public String getGreetingMesssage() {
         return greetingService.getGreetingMesssage();
         
-//        http://localhost:8080/greeting/greetingg
+
     }
     
 
@@ -60,7 +55,7 @@ public class GreetingController {
         @RequestParam(required = false) String lastName) {
         
         return greetingService.getGreeting(firstName, lastName);
-//        http://localhost:8080/greeting/param?firstName=Manish
+
     }
     
     //use case 4
@@ -70,18 +65,7 @@ public class GreetingController {
         @RequestParam(required = false) String lastName) {
         
         return greetingService.saveGreeting(firstName, lastName);
-        
-      //first create multiple ids..
-      //POST http://localhost:8080/greeting?firstName=Manish&lastName=Patel
-//      	POST http://localhost:8080/greeting?firstName=Manish&lastName=Singh
-//      		
-//      		 to View Data in H2 Console
-      
-//      	    open the url in web---  http://localhost:8080/h2-console
-//      	    Enter JDBC URL: jdbc:h2:mem:greetingdb
-//      	    Run the SQL query:
-      
-//      	SELECT * FROM greetings;
+
       
       	
     }
@@ -104,13 +88,7 @@ public class GreetingController {
     public GreetingMessage addGreeting(@RequestParam String message) {
         GreetingMessage greeting = new GreetingMessage(message);
         return greetingRepository.save(greeting);
-        //lets add somme data
-        //curl -X POST "http://localhost:8080/greeting/add?message=HelloSpringBoot"
-        //
-        //now fetch it by ID:
-        //
-        //curl -X GET "http://localhost:8080/greeting/1"
-          
+ 
         
     }
     

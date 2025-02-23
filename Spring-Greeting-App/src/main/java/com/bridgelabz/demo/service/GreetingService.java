@@ -30,11 +30,7 @@ public class GreetingService {
         }
     }
 
-  //for testing 
-  //GET http://localhost:8080/greeting
-//  	GET http://localhost:8080/greeting?firstName=Manish
-//  		GET http://localhost:8080/greeting?lastName=Patel
-//  			GET http://localhost:8080/greeting?firstName=Manish&lastName=Patel
+
     public GreetingMessage saveGreeting(String firstName, String lastName) {
         String message;
         
